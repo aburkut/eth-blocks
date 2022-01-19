@@ -1,0 +1,78 @@
+{
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": [
+    "eslint:recommended",
+    "plugin:@typescript-eslint/eslint-recommended",
+    "plugin:@typescript-eslint/recommended",
+    "plugin:jest/style"
+  ],
+  "globals": {
+    "Atomics": "readonly",
+    "SharedArrayBuffer": "readonly"
+  },
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "ecmaVersion": 2018,
+    "sourceType": "module"
+  },
+  "plugins": [
+    "@typescript-eslint",
+    "unused-imports",
+    "jest"
+  ],
+  "rules": {
+    "indent": [ "warn", 2 ],
+    "linebreak-style": [
+      "warn",
+      "unix"
+    ],
+    "quotes": [
+      "error",
+      "single"
+    ],
+    "semi": [
+      "warn",
+      "always"
+    ],
+    "sort-imports": ["error", {
+      "ignoreCase": false,
+      "ignoreDeclarationSort": true,
+      "ignoreMemberSort": false,
+      "memberSyntaxSortOrder": ["none", "all", "multiple", "single"]
+    }],
+    "comma-dangle": [
+      "error",
+      {
+        "arrays": "always-multiline",
+        "objects": "always-multiline",
+        "imports": "always-multiline",
+        "exports": "always-multiline",
+        "functions": "always-multiline"
+      }
+    ],
+    "eol-last": [
+      "warn",
+      "always"
+    ],
+    "no-var": "error",
+    "array-bracket-spacing": ["error", "always"],
+    "object-curly-spacing": ["error", "always"],
+    "prefer-template": ["error"],
+    "max-len": ["error", { "code": 140, "tabWidth": 2 } ],
+    "@typescript-eslint/no-unused-vars": "error",
+    "@typescript-eslint/naming-convention": [
+      "error",
+      { "selector": "variable", "format": ["camelCase", "UPPER_CASE", "PascalCase"] },
+      { "selector": "function", "format": ["camelCase", "PascalCase"] }
+    ],
+    "newline-before-return": "off",
+    "no-trailing-spaces": "warn",
+    "@typescript-eslint/explicit-function-return-type": "off",
+    "jest/consistent-test-it":  ["error"],
+    "@typescript-eslint/ban-ts-comment": "off"
+  },
+  "overrides": []
+}
