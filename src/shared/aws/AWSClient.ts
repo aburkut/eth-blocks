@@ -18,7 +18,7 @@ export class AWSClient {
   ) {
     this.agent = new https.Agent({
       keepAlive: true,
-      maxSockets: Infinity
+      maxSockets: Infinity,
     });
 
     this.DynamoDB = new AWS.DynamoDB({

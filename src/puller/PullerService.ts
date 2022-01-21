@@ -47,7 +47,7 @@ export class PullerService {
 
       const day = this.blockService.getDay(block.timestamp);
       await this.blockService.saveBlock(block);
-      // await this.transactionService.saveTransactionsList(day, transactions);
+      await this.transactionService.saveTransactionsList(day, transactions);
 
       this.logger.info(`Block with number ${block.number} and ${transactions.length} transactions are saved in the database.`);
 

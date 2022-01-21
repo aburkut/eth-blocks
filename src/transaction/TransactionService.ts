@@ -14,6 +14,6 @@ export class TransactionService {
   public saveTransactionsList(day: string, transactions) {
     return Promise.all(transactions.map((transaction) => {
       return this.saveTransaction(day, transaction);
-    }))
+    }));
   }
 }

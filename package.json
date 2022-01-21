@@ -9,7 +9,8 @@
   "scripts": {
     "build": "tsc",
     "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production",
-    "start:dev": "npx ts-node src/main.ts | npx pino-pretty",
+    "start:dev:puller": "npx ts-node src/blocks-puller.ts | npx pino-pretty",
+    "start:dev:calc": "npx ts-node src/blocks-calc.ts | npx pino-pretty",
     "test": "npx jest -c jest.config.js",
     "lint": "npx eslint -c .eslintrc.json src --ext .ts,.js",
     "lint:fix": "npx eslint -c .eslintrc.json src --ext .ts,.js --fix"

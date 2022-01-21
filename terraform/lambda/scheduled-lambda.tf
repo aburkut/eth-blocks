@@ -1,17 +1,27 @@
 
-locals {
-  account_id = data.aws_caller_identity.current.account_id
-  region = data.aws_region.current.name
-}
+variable "function_name" {}
+variable "source_path" {}
+variable "handler" {}
+variable "schedule_expression" {}
+variable "description" {}
+variable "region" {}
+variable "account_id" {}
+variable "etherscan_api_key" {}
+variable "etherscan_network" {}
+variable "block_start" {}
+variable "block_ddb_table" {}
+variable "transaction_ddb_table" {}
+variable "state_bucket" {}
+variable "state_key" {}
 
 module "lambda_function" {
   source = "terraform-aws-modules/lambda/aws"
 
-  function_name = "eth-puller"
-  description   = "The function which pulls ETH blocks and transaction into DDB tables"
-  handler       = "lambda.bootstrap"
+  function_name = var.function_name
+  description   = var.description
+  handler       = var.handler
   runtime       = "nodejs14.x"
-  source_path = "../dist/"
+  source_path = var.source_path
   timeout = 120
   reserved_concurrent_executions = 1
   attach_cloudwatch_logs_policy = true
@@ -39,22 +49,22 @@ module "lambda_function" {
     s3_list = {
       effect    = "Allow",
       actions   = ["s3:HeadObject", "s3:ListBucket"],
-      resources = ["arn:aws:s3:::${aws_s3_bucket.eth-blocks-state.bucket}"]
+      resources = ["arn:aws:s3:::${var.state_bucket}"]
     }
     s3_read_write = {
       effect    = "Allow",
       actions   = ["s3:GetObject", "s3:PutObject"],
-      resources = ["arn:aws:s3:::${aws_s3_bucket.eth-blocks-state.bucket}/*"]
+      resources = ["arn:aws:s3:::${var.state_bucket}/*"]
     },
     block_ddb_table_read_write = {
       effect    = "Allow",
       actions   = ["dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:BatchGetItem", "dynamodb:Query", "dynamodb:BatchWriteItem", "dynamodb:Scan"],
-      resources = ["arn:aws:dynamodb:${local.region}:${local.account_id}:table/${aws_dynamodb_table.blocks_table.name}"]
+      resources = ["arn:aws:dynamodb:${var.region}:${var.account_id}:table/${var.block_ddb_table}"]
     },
     transaction_ddb_table_read_write = {
       effect    = "Allow",
       actions   = ["dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:BatchGetItem", "dynamodb:Query", "dynamodb:BatchWriteItem", "dynamodb:Scan"],
-      resources = ["arn:aws:dynamodb:${local.region}:${local.account_id}:table/${aws_dynamodb_table.transactions_table.name}"]
+      resources = ["arn:aws:dynamodb:${var.region}:${var.account_id}:table/${var.transaction_ddb_table}"]
     }
   }
 
@@ -64,9 +74,9 @@ module "lambda_function" {
 }
 
 resource "aws_cloudwatch_event_rule" "trigger_once_a_minute" {
-  name                = "TriggerLambdaOnceAMinute"
-  description         = "Triggers a lambda function once a minute"
-  schedule_expression = "rate(1 minute)"
+  name                = "TriggerLambda"
+  description         = "Triggers a lambda function by schedule"
+  schedule_expression = var.schedule_expression
 }
 
 resource "aws_cloudwatch_event_target" "scan_ami_lambda_function" {
