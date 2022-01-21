@@ -1,3 +1,5 @@
 import { bootstrap } from './bootstrap';
 
-bootstrap();
+module.exports = {
+  bootstrap,
+};
