@@ -1,5 +1,7 @@
 import * as Bluebird from 'bluebird';
-
+import { NestFactory } from '@nestjs/core';
+import { AppModule } from './AppModule';
+import { PullerService, PullerModule } from './puller';
 // @ts-ignore
 global.Promise = Bluebird;
 
@@ -9,6 +11,7 @@ process.on('exit', (code) => {
 });
 
 async function bootstrap() {
-  console.log('Bootstrap');
+  const app = await NestFactory.createApplicationContext(AppModule);
+  await app.select(PullerModule).get(PullerService).pullBlocksWithTransactions();
 }
 bootstrap();
