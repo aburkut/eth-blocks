@@ -50,6 +50,7 @@ For reference look at [.env-example](.env-example) file
 
 To provision AWS resources need to run the following steps:
 - `cd terraform`
+- `export AWS_ACCESS_KEY_ID=xxx` & `export AWS_SECRET_ACCESS_KEY=xxx` to give terraform access to AWS cloud
 - `terraform init` to download providers and modules
 - `terraform plan` to see which AWS  resources will be created
 - `terraform apply ` to provision infrastructure
