@@ -49,6 +49,7 @@ For reference look at [.env-example](.env-example) file
 ## Terraform
 
 To provision AWS resources need to run the following steps:
+- `npm run build` to compile TS files and create dist folder that will be deployed as AWS lambda function by terraform
 - `cd terraform`
 - `export AWS_ACCESS_KEY_ID=xxx` & `export AWS_SECRET_ACCESS_KEY=xxx` to give terraform access to AWS cloud
 - `terraform init` to download providers and modules
