@@ -16,7 +16,7 @@
 - `npm run lint` - runs eslint checks
 - `npm run lint:fix` - runs eslint checks and fixes problems
 
-## Environment Development
+## Environment variables
 - `ETHERSCAN_API_KEY=xx`
 - `ETHERSCAN_NETWORK=xxx`
 - `BLOCK_START=xxx`
