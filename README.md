@@ -1,5 +1,3 @@
-# eth-blocks
-
 ## Setup:
 
 - `git clone git@github.com:aburkut/eth-blocks.git cd eth-blocks`
