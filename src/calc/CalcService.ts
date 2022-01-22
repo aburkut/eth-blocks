@@ -2,8 +2,8 @@ import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { BigNumber, ethers } from 'ethers';
 import { PinoLogger } from 'nestjs-pino';
-import * as abi from '../../contracts/abi.json';
 import { BlockService } from '../block';
+import * as abi from '../abi.json';
 
 @Injectable()
 export class CalcService {
@@ -42,10 +42,10 @@ export class CalcService {
     const wallet = new ethers.Wallet(this.configService.get<string>('PRIVATE_KEY'), provider);
     const contract = new ethers.Contract(contractAddress, abi, provider);
 
-    this.logger.info(`Smart contract address: ${contract.address}`)
+    this.logger.info(`Smart contract address: ${contract.address}`);
 
     const contractWithSigner = contract.connect(wallet);
-    let tx = await contractWithSigner.setDay(day, count, totalGasUsed.toHexString());
+    const tx = await contractWithSigner.setDay(day, count, totalGasUsed.toHexString());
 
     this.logger.info(`TX Hash: ${tx.hash}`);
 
@@ -53,7 +53,7 @@ export class CalcService {
 
     const days = await contract.getDays();
 
-    this.logger.info(`Days in contracts: ${days.join(', ')}`)
+    this.logger.info(`Days in contracts: ${days.join(', ')}`);
 
     const value = await contract.dayMapping(day);
 
