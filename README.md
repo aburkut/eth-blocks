@@ -31,14 +31,14 @@ For reference look at [.env-example](.env-example) file
 - `SMART_CONTRACT_ADDRESS=xxx` - smart contract address
 - `PRIVATE_KEY=xxx` - private key to iteract with smart contract
 
-
 ## Architecture:
 
 ![Diagram](Diagram.png)
 
-- Two AWS scheduled AWS Lambda functions - puller and calc.
-- Database - AWS Dynamodb 
-
+- Serverless architecture (cheap, scalable, no efforts to manage)
+- Two AWS scheduled Lambda functions - puller and calc.
+- S3 bucket to store the latest processed block nubmer
+- Database - AWS Dynamodb
 
 ## Directory structure
 - [contracts](contracts) - contains Solidity smart contract, abi.json, and simple TS script to deploy the contract to network
