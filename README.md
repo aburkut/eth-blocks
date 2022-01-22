@@ -55,3 +55,8 @@ To provision AWS resources need to run the following steps:
 - `terraform init` to download providers and modules
 - `terraform plan` to see which AWS  resources will be created
 - `terraform apply ` to provision infrastructure
+
+
+## Technical details:
+
+The lambda functions a built on the top on [Nest.js framework](https://nestjs.com/) and Typescript.
