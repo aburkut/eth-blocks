@@ -36,9 +36,11 @@ For reference look at [.env-example](.env-example) file
 ![Diagram](Diagram.png)
 
 - Serverless architecture (cheap, scalable, no efforts to manage)
-- Two AWS scheduled Lambda functions - puller and calc.
-- S3 bucket to store the latest processed block nubmer
-- Database - AWS Dynamodb
+- Two AWS scheduled Lambda functions - puller and calc. The first one is responsible for pulling blocks and transactions from
+Etherscan API into database, runs on schedule every 1 minute. The second one calculates total number of blocks and ETH spent for gas gee for a day and puts the data into Solidity smart contract.
+Runs on schedule once a day at 00:10.
+- S3 bucket to store the latest processed block number for puller lambda
+- Database - AWS Dynamodb tables to store blocks and transactions
 
 ## Directory structure
 - [contracts](contracts) - contains Solidity smart contract, abi.json, and simple TS script to deploy the contract to network
