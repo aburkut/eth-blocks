@@ -38,3 +38,10 @@ For reference look at [.env-example](.env-example) file
 
 - Two AWS scheduled AWS Lambda functions - puller and calc.
 - Database - AWS Dynamodb 
+
+
+## Directory structure
+- [contracts](contracts) - contains Solidity smart contract, abi.json, and simple TS script to deploy the contract to network
+- [src](src) - contains source code of Node.js AWS Lambda functions
+- [terraform](terraform) - contains terraform templates to provision AWS resources required by the application
+- [test](test) - contains tests
