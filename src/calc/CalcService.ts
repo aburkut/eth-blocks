@@ -14,7 +14,7 @@ export class CalcService {
   ) {}
 
   private async calcBlocksAndFees(day: string): Promise<[ number, BigNumber ]> {
-    const blocks = await this.blockService.fetchBlockByDay(day);
+    const blocks = await this.blockService.fetchBlocksByDay(day);
     const count = blocks.length;
 
     const totalGasUsed = blocks.reduce((memo, block) => {

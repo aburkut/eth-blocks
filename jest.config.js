@@ -6,7 +6,7 @@ module.exports = {
     preset: 'ts-jest',
     clearMocks: true,
     collectCoverage: true,
-    verbose: true,
+    verbose: false,
     silent: false,
     coverageDirectory: 'coverage',
     coveragePathIgnorePatterns: [
