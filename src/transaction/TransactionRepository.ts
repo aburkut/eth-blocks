@@ -20,7 +20,7 @@ export class TransactionRepository {
   public async saveTransaction(day: string, transaction: ethers.providers.TransactionResponse): Promise<AWS.DynamoDB.PutItemOutput> {
     const Item = { ...transaction, day };
 
-    this.logger.info(`Saving transaction with hash ${transaction.hash} to DDB table...`)
+    this.logger.info(`Saving transaction with hash ${transaction.hash} to DDB table...`);
 
     return this.awsClient.getDyno(this.tableName)
       .putItem({ Item, TableName: this.tableName, ReturnValues: 'NONE' })

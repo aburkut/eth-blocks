@@ -17,7 +17,7 @@ export class StateRepository {
 
     const { Body } = await this.awsClient.getS3().getObject({ Bucket, Key }).promise();
 
-    this.logger.info(`Getting state ${Body.toString()} from s3://${Bucket}/${Key}...`)
+    this.logger.info(`Getting state ${Body.toString()} from s3://${Bucket}/${Key}...`);
 
     return parseInt(Body.toString());
   }
@@ -28,7 +28,7 @@ export class StateRepository {
 
     await this.awsClient.getS3().putObject({ Bucket, Key, Body: blockNumber.toString() }).promise();
 
-    this.logger.info(`Updated state to ${blockNumber} in s3://${Bucket}/${Key}...`)
+    this.logger.info(`Updated state to ${blockNumber} in s3://${Bucket}/${Key}...`);
 
     return blockNumber;
   }
