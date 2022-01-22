@@ -14,6 +14,9 @@
 - `npm run lint:fix` - runs eslint checks and fixes problems
 
 ## Environment variables:
+
+For reference look at [.env-example](.env-example) file
+
 - `ETHERSCAN_API_KEY=xx` - API_KEY value for Etherscan https://etherscan.io/
 - `ETHERSCAN_NETWORK=xxx` - network (homestead, ropsten, etc.) for Etherscan
 - `BLOCK_START=xxx` - optional, the value indicates for which block number to start
