@@ -19,7 +19,7 @@ For reference look at [.env-example](.env-example) file
 
 - `ETHERSCAN_API_KEY=xx` - API_KEY value for Etherscan https://etherscan.io/
 - `ETHERSCAN_NETWORK=xxx` - network (homestead, ropsten, etc.) for Etherscan
-- `BLOCK_START=xxx` - optional, the value indicates for which block number to start
+- `BLOCK_START=xxx` - optional, the value indicates from which block number to start from
 - `BLOCKS_DDB_TABLE=blocks` - AWS Dynamodb table name where blocks will be stored
 - `TRANSACTIONS_DDB_TABLE=transactions` - AWS Dynamodb tbale name where transactions will be stored
 - `AWS_ACCESS_KEY_ID=xxx` - AWS access key id
@@ -31,20 +31,28 @@ For reference look at [.env-example](.env-example) file
 - `SMART_CONTRACT_ADDRESS=xxx` - smart contract address
 - `PRIVATE_KEY=xxx` - private key to iteract with smart contract
 
-
 ## Architecture:
 
 ![Diagram](Diagram.png)
 
-- Two AWS scheduled AWS Lambda functions - puller and calc.
-- Database - AWS Dynamodb 
-
+- Serverless architecture (cheap, scalable, no efforts to manage)
+- Two AWS scheduled Lambda functions - puller and calc. The first one is responsible for pulling blocks and transactions from
+Etherscan API into database, runs on schedule every 1 minute. The second one calculates total number of blocks and ETH spent for gas gee for a day and puts the data into Solidity smart contract.
+Runs on schedule once a day at 00:10.
+- S3 bucket to store the latest processed block number for puller lambda
+- Database - AWS Dynamodb tables to store blocks and transactions
 
 ## Directory structure
 - [contracts](contracts) - contains Solidity smart contract, abi.json, and simple TS script to deploy the contract to network
 - [src](src) - contains source code of Node.js AWS Lambda functions
 - [terraform](terraform) - contains terraform templates to provision AWS resources required by the application
 - [test](test) - contains tests
+
+## Deploy smart contract:
+
+- `export SMART_CONTRACT_NETWORK=xxx` - put network of your choise
+- `export PRIVATE_KEY=xxx` - put your private key
+- `npm run deploy:contract` outputs smart contract address
 
 ## Terraform
 

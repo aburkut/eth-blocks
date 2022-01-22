@@ -5,13 +5,13 @@ variable "etherscan_network" {
 }
 
 variable "etherscan_api_key" {
-  type = string
-  sensitive   = true
+  type      = string
+  sensitive = true
 }
 
 variable "block_start" {
   type    = number
-  default = 14049206
+  default = 14055860
 }
 
 variable "block_ddb_table" {
@@ -32,4 +32,18 @@ variable "state_bucket" {
 variable "state_key" {
   type    = string
   default = "blocks-state.txt"
+}
+
+variable "private_key" {
+  type      = string
+  sensitive = true
+}
+
+variable "smart_contract_address" {
+  type = string
+}
+
+variable "smart_contact_network" {
+  type    = string
+  default = "ropsten"
 }

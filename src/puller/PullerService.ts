@@ -17,7 +17,7 @@ export class PullerService {
     private readonly logger: PinoLogger,
   ) {}
 
-  private async getBlockWithTransactions(blockNumber: number) {
+  private async getBlockWithTransactions(blockNumber: number): Promise<any> {
     const provider = new ethers.providers.EtherscanProvider(
       this.configService.get<string>('ETHERSCAN_NETWORK'),
       this.configService.get<string>('ETHERSCAN_API_KEY'),

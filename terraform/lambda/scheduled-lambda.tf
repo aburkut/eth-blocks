@@ -13,19 +13,22 @@ variable "block_ddb_table" {}
 variable "transaction_ddb_table" {}
 variable "state_bucket" {}
 variable "state_key" {}
+variable "private_key" {}
+variable "smart_contract_address" {}
+variable "smart_contact_network" {}
 
 module "lambda_function" {
   source = "terraform-aws-modules/lambda/aws"
 
-  function_name = var.function_name
-  description   = var.description
-  handler       = var.handler
-  runtime       = "nodejs14.x"
-  source_path = var.source_path
-  timeout = 120
+  function_name                  = var.function_name
+  description                    = var.description
+  handler                        = var.handler
+  runtime                        = "nodejs14.x"
+  source_path                    = var.source_path
+  timeout                        = 120
   reserved_concurrent_executions = 1
-  attach_cloudwatch_logs_policy = true
-  publish = true
+  attach_cloudwatch_logs_policy  = true
+  publish                        = true
 
   environment_variables = {
     ETHERSCAN_API_KEY      = var.etherscan_api_key
@@ -35,12 +38,15 @@ module "lambda_function" {
     TRANSACTIONS_DDB_TABLE = var.transaction_ddb_table
     STATE_BUCKET           = var.state_bucket
     BLOCKS_STATE_FILE      = var.state_key
+    PRIVATE_KEY            = var.private_key
+    SMART_CONTRACT_ADDRESS = var.smart_contract_address
+    SMART_CONTRACT_NETWORK = var.smart_contact_network
   }
 
   allowed_triggers = {
     TriggerRule = {
       principal  = "events.amazonaws.com"
-      source_arn = aws_cloudwatch_event_rule.trigger_once_a_minute.arn
+      source_arn = aws_cloudwatch_event_rule.event_rule.arn
     }
   }
 
@@ -73,13 +79,13 @@ module "lambda_function" {
   }
 }
 
-resource "aws_cloudwatch_event_rule" "trigger_once_a_minute" {
-  name                = "TriggerLambda"
+resource "aws_cloudwatch_event_rule" "event_rule" {
+  name                = "TriggerLambda_${var.function_name}"
   description         = "Triggers a lambda function by schedule"
   schedule_expression = var.schedule_expression
 }
 
 resource "aws_cloudwatch_event_target" "scan_ami_lambda_function" {
-  rule = aws_cloudwatch_event_rule.trigger_once_a_minute.name
+  rule = aws_cloudwatch_event_rule.event_rule.name
   arn  = module.lambda_function.lambda_function_arn
 }
