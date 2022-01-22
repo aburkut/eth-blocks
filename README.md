@@ -45,3 +45,11 @@ For reference look at [.env-example](.env-example) file
 - [src](src) - contains source code of Node.js AWS Lambda functions
 - [terraform](terraform) - contains terraform templates to provision AWS resources required by the application
 - [test](test) - contains tests
+
+## Terraform
+
+To provision AWS resources need to run the following steps:
+- `cd terraform`
+- `terraform init` to download providers and modules
+- `terraform plan` to see which AWS  resources will be created
+- `terraform apply ` to provision infrastructure
