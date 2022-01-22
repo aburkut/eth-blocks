@@ -48,6 +48,12 @@ Runs on schedule once a day at 00:10.
 - [terraform](terraform) - contains terraform templates to provision AWS resources required by the application
 - [test](test) - contains tests
 
+## Deploy smart contract:
+
+- `export SMART_CONTRACT_NETWORK=xxx` - put network of your choise
+- `export PRIVATE_KEY=xxx` - put your private key
+- `npm run deploy:contract` outputs smart contract address
+
 ## Terraform
 
 To provision AWS resources need to run the following steps:
