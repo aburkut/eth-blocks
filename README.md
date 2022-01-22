@@ -8,12 +8,12 @@
 
 ### NPM scripts
 
-- `npm run build`
-- `npm run start:dev:puller`
-- `npm run start:dev:calc`
-- `npm run deploy:contract`
-- `npm test`
-- `npm run lint`
-- `npm run lint:fix`
+- `npm run build` - compile TS files and install deps for dist folder
+- `npm run start:dev:puller` - runs puller service (for local development)
+- `npm run start:dev:calc` - runs calc service (for local development)
+- `npm run deploy:contract` - deploy smart contract to specific network
+- `npm test` - runs tests
+- `npm run lint` - runs eslint checks
+- `npm run lint:fix` - runs eslint checks and fixes problems
 
 ## Local Development
