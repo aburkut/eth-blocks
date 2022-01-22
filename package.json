@@ -2,9 +2,9 @@
   "name": "eth-blocks",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
-  "directories": {
-    "test": "test"
+  "main": "src/lambdas.ts",
+  "engines": {
+    "node": ">=14.17.0"
   },
   "scripts": {
     "build": "tsc",
