@@ -27,6 +27,7 @@
   },
   "homepage": "https://github.com/aburkut/eth-blocks#readme",
   "devDependencies": {
+    "@nestjs/testing": "^8.2.6",
     "@types/bluebird": "^3.5.36",
     "@types/dotenv": "^8.2.0",
     "@types/jest": "^27.4.0",

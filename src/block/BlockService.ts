@@ -18,7 +18,7 @@ export class BlockService {
     return new Date(timestamp * 1000).toLocaleDateString('en-CA');
   }
 
-  public async fetchBlockByDay(day: string): Promise<AWS.DynamoDB.ItemList> {
-    return this.blockRepository.fetchBlockByDay(day);
+  public async fetchBlocksByDay(day: string): Promise<AWS.DynamoDB.ItemList> {
+    return this.blockRepository.fetchBlocksByDay(day);
   }
 }
