@@ -11,7 +11,7 @@ process.on('exit', (code) => {
 
 export async function blocksCalc() {
   const app = await NestFactory.createApplicationContext(CalcModule);
-  await app.select(CalcModule).get(CalcService).calcBlocksAndFees();
+  await app.select(CalcModule).get(CalcService).process();
 }
 
 blocksCalc();

@@ -1,13 +1,37 @@
-pragma solidity ^0.8.11;
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.10;
 
 contract SimpleStorage {
-    uint storedData;
-
-    function set(uint x) public {
-        storedData = x;
+    address owner;
+    struct DayData {
+        uint blocksNumber;
+        string ethSpent;
     }
 
-    function get() public view returns (uint) {
-        return storedData;
+    mapping(string => DayData) public dayMapping;
+    string[] public daysArr;
+
+    constructor() {
+        owner = msg.sender;
+    }
+
+    modifier _ownerOnly(){
+        require(msg.sender == owner);
+        _;
+    }
+
+    function setDay(string memory key, uint _blocksNumber, string memory _ethSpent) _ownerOnly public {
+        DayData memory dayItem;
+
+        dayItem.blocksNumber = _blocksNumber;
+        dayItem.ethSpent = _ethSpent;
+
+        dayMapping[key] = dayItem;
+
+        daysArr.push(key);
+    }
+
+    function getDays() view public returns (string[] memory) {
+        return daysArr;
     }
 }

@@ -11,6 +11,7 @@
     "postbuild": "cp package.json dist/package.json && cd dist && npm install --only=production",
     "start:dev:puller": "npx ts-node src/blocks-puller.ts | npx pino-pretty",
     "start:dev:calc": "npx ts-node src/blocks-calc.ts | npx pino-pretty",
+    "deploy:contract": "npx ts-node contracts/deploy.ts",
     "test": "npx jest -c jest.config.js",
     "lint": "npx eslint -c .eslintrc.json src --ext .ts,.js",
     "lint:fix": "npx eslint -c .eslintrc.json src --ext .ts,.js --fix"
@@ -27,6 +28,7 @@
   "homepage": "https://github.com/aburkut/eth-blocks#readme",
   "devDependencies": {
     "@types/bluebird": "^3.5.36",
+    "@types/dotenv": "^8.2.0",
     "@types/jest": "^27.4.0",
     "@types/lodash": "^4.14.178",
     "@types/node": "^17.0.10",
@@ -47,6 +49,7 @@
     "@nestjs/core": "^8.2.5",
     "aws-sdk": "^2.1060.0",
     "bluebird": "^3.7.2",
+    "dotenv": "^14.2.0",
     "ethers": "^5.5.3",
     "lodash": "^4.17.21",
     "nestjs-pino": "^2.5.0",
