@@ -16,4 +16,17 @@
 - `npm run lint` - runs eslint checks
 - `npm run lint:fix` - runs eslint checks and fixes problems
 
-## Local Development
+## Environment Development
+- `ETHERSCAN_API_KEY=xx`
+- `ETHERSCAN_NETWORK=xxx`
+- `BLOCK_START=xxx`
+- `BLOCKS_DDB_TABLE=blocks`
+- `TRANSACTIONS_DDB_TABLE=transactions`
+- `AWS_ACCESS_KEY_ID=xxx`
+- `AWS_SECRET_ACCESS_KEY=xxx`
+- `AWS_REGION=us-east-1`
+- `STATE_BUCKET=eth-blocks-state`
+- `BLOCKS_STATE_FILE=blocks-state.txt`
+- `SMART_CONTRACT_NETWORK=ropsten`
+- `SMART_CONTRACT_ADDRESS=xxx`
+- `PRIVATE_KEY=xxx`
