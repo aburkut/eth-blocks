@@ -30,5 +30,8 @@
 
 
 ## Architecture:
+
+![Diagram](Diagram.png)
+
 - Two AWS scheduled AWS Lambda functions - puller and calc.
 - Database - AWS Dynamodb 
