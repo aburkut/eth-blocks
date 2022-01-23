@@ -18,3 +18,11 @@ output "blocks_table_name" {
 output "blocks_table_arn" {
   value = aws_dynamodb_table.blocks_table.arn
 }
+
+output "lambda_puller_log_group" {
+  value = module.puller_lambda.lambda_cloudwatch_log_group
+}
+
+output "lambda_calc_log_group" {
+  value = module.calc_lambda.lambda_cloudwatch_log_group
+}

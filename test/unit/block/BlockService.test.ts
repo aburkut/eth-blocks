@@ -1,3 +1,4 @@
+import { BlockWithTransactions } from '@ethersproject/abstract-provider';
 import { ConfigModule } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import { LoggerModule } from 'nestjs-pino';
@@ -32,11 +33,11 @@ describe('[BlockService]', () => {
       const fakeBlock = {
         number: 213123123,
         transactions: [ 'transaction1', 'transaction2', 'transaction3' ],
-      };
+      } as unknown as BlockWithTransactions;
 
       const result = await blockService.saveBlock(fakeBlock);
 
-      expect(blockRepository.saveBlock).toHaveBeenCalledWith({ number: 213123123, day });
+      expect(blockRepository.saveBlock).toHaveBeenCalledWith({ number: 213123123 }, day);
       expect(result).toStrictEqual({ result: true });
     });
   });

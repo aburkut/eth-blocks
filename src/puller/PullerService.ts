@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { ethers } from 'ethers';
+import { BlockWithTransactions } from '@ethersproject/abstract-provider';
 import { BlockService } from '../block';
 import { TransactionService } from '../transaction';
 import { PinoLogger } from 'nestjs-pino';
@@ -17,7 +18,7 @@ export class PullerService {
     private readonly logger: PinoLogger,
   ) {}
 
-  private async getBlockWithTransactions(blockNumber: number): Promise<any> {
+  private async getBlockWithTransactions(blockNumber: number): Promise<BlockWithTransactions> {
     const provider = new ethers.providers.EtherscanProvider(
       this.configService.get<string>('ETHERSCAN_NETWORK'),
       this.configService.get<string>('ETHERSCAN_API_KEY'),
@@ -34,7 +35,7 @@ export class PullerService {
     const blockNumberFromState = await this.stateService.getState();
     let currentBlockNumber = blockNumberFromState + 1;
 
-    const MAX_BLOCKS_LIMIT = 100;
+    const MAX_BLOCKS_LIMIT = 150;
     let block = await this.getBlockWithTransactions(currentBlockNumber);
     let counter = 0;
 
@@ -47,6 +48,7 @@ export class PullerService {
 
       const day = this.blockService.getDay(block.timestamp);
       await this.blockService.saveBlock(block);
+      this.logger.info('Saving transactions list...');
       await this.transactionService.saveTransactionsList(day, transactions);
 
       this.logger.info(`Block with number ${block.number} and ${transactions.length} transactions are saved in the database.`);

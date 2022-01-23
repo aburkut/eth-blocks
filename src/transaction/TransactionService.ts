@@ -1,3 +1,4 @@
+import { TransactionResponse } from '@ethersproject/abstract-provider';
 import { Injectable } from '@nestjs/common';
 import { TransactionRepository } from './TransactionRepository';
 import * as AWS from 'aws-sdk';
@@ -8,13 +9,11 @@ export class TransactionService {
     private readonly transactionRepository: TransactionRepository,
   ) {}
 
-  public saveTransaction(day: string, transaction): Promise<AWS.DynamoDB.PutItemOutput> {
+  public async saveTransaction(day: string, transaction: TransactionResponse): Promise<AWS.DynamoDB.PutItemOutput> {
     return this.transactionRepository.saveTransaction(day, transaction);
   }
 
-  public saveTransactionsList(day: string, transactions): Promise<AWS.DynamoDB.ItemList> {
-    return Promise.all(transactions.map((transaction) => {
-      return this.saveTransaction(day, transaction);
-    }));
+  public async saveTransactionsList(day: string, transactions: TransactionResponse[]): Promise<void> {
+    await this.transactionRepository.batchSave(day, transactions);
   }
 }
