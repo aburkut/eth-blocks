@@ -44,8 +44,8 @@ Runs on schedule once a day at 00:10.
 - Database - AWS Dynamodb tables to store blocks and transactions
 
 ## Directory structure
-- [contracts](contracts) - contains Solidity smart contract, abi.json, and simple TS script to deploy the contract to network
-- [src](src) - contains source code of Node.js AWS Lambda functions
+- [contracts](contracts) - contains Solidity smart contract
+- [src](src) - contains source code of Node.js AWS Lambda functions and script to deploy smart contract
 - [terraform](terraform) - contains terraform templates to provision AWS resources required by the application
 - [test](test) - contains tests
 
