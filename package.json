@@ -13,8 +13,8 @@
     "start:dev:calc": "npx ts-node src/blocks-calc.ts | npx pino-pretty",
     "deploy:contract": "npx ts-node src/deploy-contract.ts",
     "test": "npx jest -c jest.config.js",
-    "lint": "npx eslint -c .eslintrc.json src --ext .ts,.js",
-    "lint:fix": "npx eslint -c .eslintrc.json src --ext .ts,.js --fix"
+    "lint": "npx eslint -c .eslintrc.json src --ext .ts,.js src test",
+    "lint:fix": "npx eslint -c .eslintrc.json src --ext .ts,.js src test --fix"
   },
   "repository": {
     "type": "git",
