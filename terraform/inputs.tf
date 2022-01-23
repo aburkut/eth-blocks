@@ -11,7 +11,7 @@ variable "etherscan_api_key" {
 
 variable "block_start" {
   type    = number
-  default = 14055860
+  default = 14062289
 }
 
 variable "block_ddb_table" {

@@ -14,8 +14,6 @@ export async function blocksCalc() {
   await app.select(CalcModule).get(CalcService).process();
 }
 
-blocksCalc();
-
 module.exports = {
   blocksCalc,
 };

@@ -89,3 +89,7 @@ resource "aws_cloudwatch_event_target" "scan_ami_lambda_function" {
   rule = aws_cloudwatch_event_rule.event_rule.name
   arn  = module.lambda_function.lambda_function_arn
 }
+
+output "lambda_cloudwatch_log_group" {
+  value = module.lambda_function.lambda_cloudwatch_log_group_arn
+}

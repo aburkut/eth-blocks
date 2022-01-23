@@ -53,3 +53,4 @@ module "calc_lambda" {
   smart_contract_address = var.smart_contract_address
   smart_contact_network  = var.smart_contact_network
 }
+

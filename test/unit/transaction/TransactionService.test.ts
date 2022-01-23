@@ -1,3 +1,4 @@
+import { TransactionResponse } from '@ethersproject/abstract-provider';
 import { Test } from '@nestjs/testing';
 import { ConfigModule } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
@@ -27,7 +28,7 @@ describe('[TransactionService]', () => {
         .spyOn(transactionRepository, 'saveTransaction')
         .mockImplementation(() => Promise.resolve(fakeResult as AWS.DynamoDB.PutItemOutput));
 
-      const result = await transactionService.saveTransaction('2022-01-22', { hash: '0x12312d123123' });
+      const result = await transactionService.saveTransaction('2022-01-22', { hash: '0x12312d123123' } as TransactionResponse);
 
       expect(result).toStrictEqual(fakeResult);
       expect(transactionRepository.saveTransaction).toHaveBeenCalledTimes(1);
@@ -36,15 +37,17 @@ describe('[TransactionService]', () => {
   });
 
   describe('[saveTransactionsList]', () => {
-    it('should call saveTransaction per each transaction passed', async () => {
+    it('should call batchSave and pass transactions', async () => {
       jest
-        .spyOn(transactionService, 'saveTransaction')
-        .mockImplementation(() => Promise.resolve({ result : true } as AWS.DynamoDB.PutItemOutput));
+        .spyOn(transactionRepository, 'batchSave')
+        .mockImplementation(() => Promise.resolve());
 
-      const result = await transactionService.saveTransactionsList('2022-01-22', [ { hash: '0x12312d123123' }, { hash: '0x131233' } ]);
+      await transactionService.saveTransactionsList(
+        '2022-01-22', [ { hash: '0x12312d123123' }, { hash: '0x131233' } ] as TransactionResponse[],
+      );
 
-      expect(result).toStrictEqual([ { result : true }, { result : true } ]);
-      expect(transactionService.saveTransaction).toHaveBeenCalledTimes(2);
+      expect(transactionRepository.batchSave).toHaveBeenCalledTimes(1);
+      expect(transactionRepository.batchSave).toHaveBeenCalledWith('2022-01-22', [ { hash: '0x12312d123123' }, { hash: '0x131233' } ]);
     });
   });
 });

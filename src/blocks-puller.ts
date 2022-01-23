@@ -14,8 +14,6 @@ export async function blocksPuller() {
   await app.select(PullerModule).get(PullerService).pullBlocksWithTransactions();
 }
 
-blocksPuller();
-
 module.exports = {
   blocksPuller,
 };

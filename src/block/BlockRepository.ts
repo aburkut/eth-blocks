@@ -1,3 +1,4 @@
+import { _Block } from '@ethersproject/abstract-provider';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import * as AWS from 'aws-sdk';
@@ -32,11 +33,11 @@ export class BlockRepository {
     }));
   }
 
-  public async saveBlock(block): Promise<AWS.DynamoDB.PutItemOutput> {
+  public async saveBlock(block: _Block, day: string): Promise<AWS.DynamoDB.PutItemOutput> {
     this.logger.info(`Saving block with number #${block.number} to DDB table...`);
 
     return this.awsClient.getDyno(this.tableName)
-      .putItem({ Item: block, TableName: this.tableName, ReturnValues: 'NONE' })
+      .putItem({ Item: { ...block, day }, TableName: this.tableName, ReturnValues: 'NONE' })
       .promise();
   }
 }

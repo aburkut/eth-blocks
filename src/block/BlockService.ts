@@ -1,4 +1,5 @@
 import { Injectable } from '@nestjs/common';
+import { BlockWithTransactions } from '@ethersproject/abstract-provider';
 import { BlockRepository } from './BlockRepository';
 import * as AWS from 'aws-sdk';
 import * as _ from 'lodash';
@@ -9,9 +10,10 @@ export class BlockService {
     private readonly blockRepository: BlockRepository,
   ) {}
 
-  public async saveBlock(block): Promise<AWS.DynamoDB.PutItemOutput> {
+  public async saveBlock(block: BlockWithTransactions): Promise<AWS.DynamoDB.PutItemOutput> {
     const withoutTransactions = _.omit(block, [ 'transactions' ]);
-    return this.blockRepository.saveBlock({ ...withoutTransactions, day: this.getDay(block.timestamp) });
+    const day = this.getDay(block.timestamp);
+    return this.blockRepository.saveBlock({ ...withoutTransactions }, day);
   }
 
   public getDay(timestamp: number): string {
