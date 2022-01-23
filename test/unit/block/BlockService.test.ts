@@ -31,7 +31,7 @@ describe('[BlockService]', () => {
 
       const fakeBlock = {
         number: 213123123,
-        transactions: ['transaction1', 'transaction2', 'transaction3'],
+        transactions: [ 'transaction1', 'transaction2', 'transaction3' ],
       };
 
       const result = await blockService.saveBlock(fakeBlock);
@@ -55,10 +55,10 @@ describe('[BlockService]', () => {
       const day = '2022-01-22';
       const fakeResults = [
         {
-          number: 123121
+          number: 123121,
         },
         {
-          number: 23123131312
+          number: 23123131312,
         },
       ] as AWS.DynamoDB.ItemList;
 
@@ -67,7 +67,7 @@ describe('[BlockService]', () => {
       const result = await blockService.fetchBlocksByDay(day);
 
       expect(blockRepository.fetchBlocksByDay).toHaveBeenCalledTimes(1);
-      expect(blockRepository.fetchBlocksByDay).toHaveBeenCalledWith(day)
+      expect(blockRepository.fetchBlocksByDay).toHaveBeenCalledWith(day);
       expect(result).toStrictEqual(fakeResults);
     });
   });

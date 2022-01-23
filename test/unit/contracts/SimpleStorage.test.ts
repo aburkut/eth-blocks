@@ -14,6 +14,7 @@ describe('[SimpleStorage] smart contact', () => {
       const { SimpleStorage } = await compile('../../../contracts/SimpleStorage.sol');
 
       provider = Ganache.provider();
+      // eslint-disable-next-line
       web3 = new (Web3 as any)(provider);
       accounts = await web3.eth.getAccounts();
 
@@ -30,7 +31,7 @@ describe('[SimpleStorage] smart contact', () => {
       contractInstance = deployedInstance;
 
     } catch(err) {
-      throw err
+      throw err;
     }
   });
 
@@ -51,7 +52,7 @@ describe('[SimpleStorage] smart contact', () => {
       await contractInstance.methods.setDay('2021-01-25', 657, '0x05de9537').send({ from: accounts[0], gas: gas + 100000  });
       const days = await contractInstance.methods.getDays().call();
 
-      expect(days).toStrictEqual(['2021-01-22', '2021-01-23', '2021-01-24', '2021-01-25']);
+      expect(days).toStrictEqual([ '2021-01-22', '2021-01-23', '2021-01-24', '2021-01-25' ]);
     });
   });
 

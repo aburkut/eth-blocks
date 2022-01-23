@@ -17,6 +17,6 @@
   },
   "exclude": ["node_modules", "test", "contracts"],
   "include": [
-    "src/**/*"
+    "src/**/*",
   ]
 }
