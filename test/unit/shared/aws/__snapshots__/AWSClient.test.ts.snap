@@ -1,43 +1,5 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`[AWSClient] [getDyno] method should return Dyno 1`] = `
-Object {
-  "batchGetAll": [Function],
-  "batchGetItem": [Function],
-  "batchGetItemRequests": [Function],
-  "batchWriteAll": [Function],
-  "batchWriteItem": [Function],
-  "batchWriteItemRequests": [Function],
-  "config": Object {
-    "accessKeyId": undefined,
-    "endpoint": "us-east-1",
-    "httpOptions": "us-east-1",
-    "logger": undefined,
-    "maxRetries": undefined,
-    "params": Object {
-      "TableName": "SOME_TEST_TABLE_NAME",
-    },
-    "region": "us-east-1",
-    "secretAccessKey": undefined,
-    "sessionToken": undefined,
-  },
-  "createTable": [Function],
-  "defaultTable": undefined,
-  "deleteItem": [Function],
-  "deleteTable": [Function],
-  "describeTable": [Function],
-  "getItem": [Function],
-  "listTables": [Function],
-  "putItem": [Function],
-  "putStream": [Function],
-  "query": [Function],
-  "queryStream": [Function],
-  "scan": [Function],
-  "scanStream": [Function],
-  "updateItem": [Function],
-}
-`;
-
 exports[`[AWSClient] [getDyno] method should return Dyno object 1`] = `
 Object {
   "batchGetAll": [Function],
