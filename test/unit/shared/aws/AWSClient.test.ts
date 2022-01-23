@@ -2,7 +2,7 @@ import { Test } from '@nestjs/testing';
 import * as AWS from 'aws-sdk';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { LoggerModule } from 'nestjs-pino';
-import { AWSClient } from '../../../src/shared/aws/AWSClient';
+import { AWSClient } from '../../../../src/shared/aws/AWSClient';
 
 describe('[AWSClient]', () => {
   let awsClient: AWSClient;

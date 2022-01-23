@@ -1,8 +1,8 @@
 import { ConfigModule } from '@nestjs/config';
 import { Test } from '@nestjs/testing';
 import { LoggerModule } from 'nestjs-pino';
-import { AWSModule } from '../../src/shared/aws';
-import { BlockRepository, BlockService } from '../../src/block';
+import { AWSModule } from '../../../src/shared/aws';
+import { BlockRepository, BlockService } from '../../../src/block';
 
 describe('[BlockService]', () => {
   let blockService: BlockService;
