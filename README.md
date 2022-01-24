@@ -11,9 +11,9 @@ For reference look at [.env-example](.env-example) file
 
 - `ETHERSCAN_API_KEY=xx` - API_KEY value for Etherscan https://etherscan.io/
 - `ETHERSCAN_NETWORK=xxx` - network (homestead, ropsten, etc.) for Etherscan
-- `BLOCK_START=xxx` - optional, the value indicates from which block number to start from
+- `BLOCK_START=xxx` - the value indicates from which block number to start from for initial run
 - `BLOCKS_DDB_TABLE=blocks` - AWS Dynamodb table name where blocks will be stored
-- `TRANSACTIONS_DDB_TABLE=transactions` - AWS Dynamodb tbale name where transactions will be stored
+- `TRANSACTIONS_DDB_TABLE=transactions` - AWS Dynamodb table name where transactions will be stored
 - `AWS_ACCESS_KEY_ID=xxx` - AWS access key id
 - `AWS_SECRET_ACCESS_KEY=xxx` - AWS secret access key
 - `AWS_REGION=us-east-1` - AWS region
