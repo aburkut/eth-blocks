@@ -38,7 +38,7 @@ export class CalcService {
     this.logger.info(`ETH spent on gas fees: ${ethers.utils.formatEther(totalGasUsed)}`);
 
     const provider = ethers.getDefaultProvider(this.configService.get<string>('SMART_CONTRACT_NETWORK'));
-    const contractAddress = this.configService.get<string>('SMART_CONTRACT_ADDRESS');
+    const contractAddress = this.configService.get<number>('SMART_CONTRACT_ADDRESS');
     const wallet = new ethers.Wallet(this.configService.get<string>('PRIVATE_KEY'), provider);
     const contract = new ethers.Contract(contractAddress, abi, provider);
 

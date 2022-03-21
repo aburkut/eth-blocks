@@ -35,8 +35,8 @@ describe('[SimpleStorage] smart contact', () => {
     }
   });
 
-  afterAll(() => {
-    provider.disconnect();
+  afterAll(async () => {
+    await provider.disconnect();
   });
 
   describe('[getDays] method', () => {

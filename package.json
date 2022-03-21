@@ -12,7 +12,7 @@
     "start:dev:puller": "npx ts-node src/start-puller.ts | npx pino-pretty",
     "start:dev:calc": "npx ts-node src/start-calc.ts | npx pino-pretty",
     "deploy:contract": "npx ts-node src/deploy-contract.ts",
-    "test": "npx jest -c jest.config.js",
+    "test": "npx jest -c jest.config.js --detectOpenHandles",
     "lint": "npx eslint -c .eslintrc.json src --ext .ts,.js src test",
     "lint:fix": "npx eslint -c .eslintrc.json src --ext .ts,.js src test --fix"
   },
